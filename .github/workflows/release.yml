@@ -6,10 +6,11 @@ on:
     tags:
       - "v*"
 
+permissions:
+  contents: write
+
 jobs:
   release:
-    permissions:
-      contents: write
     strategy:
       fail-fast: false
       matrix:
@@ -18,14 +19,16 @@ jobs:
             args: "--target aarch64-apple-darwin"
             python-version: "3.12"
             backend: "mlx"
-          - platform: "macos-13-xlarge"
-            args: "--target x86_64-apple-darwin"
-            python-version: "3.12"
-            backend: "pytorch"
-          - platform: "ubuntu-22.04"
-            args: ""
-            python-version: "3.12"
-            backend: "pytorch"
+          # Intel Mac build disabled - requires paid larger runner
+          # - platform: "macos-13-xlarge"
+          #   args: "--target x86_64-apple-darwin"
+          #   python-version: "3.12"
+          #   backend: "pytorch"
+          # Linux build disabled - PyInstaller 4GB limit with PyTorch
+          # - platform: "ubuntu-22.04"
+          #   args: ""
+          #   python-version: "3.12"
+          #   backend: "pytorch"
           - platform: "windows-latest"
             args: ""
             python-version: "3.12"
