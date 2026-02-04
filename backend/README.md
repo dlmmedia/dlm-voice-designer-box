@@ -1,4 +1,4 @@
-# voicebox Backend
+# DLM Voice Designer Backend
 
 Production-quality FastAPI backend for Qwen3-TTS voice cloning.
 
@@ -38,7 +38,7 @@ backend/
 
 ### Backend Selection
 
-Voicebox automatically selects the best backend based on platform:
+DLM Voice Designer automatically selects the best backend based on platform:
 
 - **Apple Silicon (M1/M2/M3)**: Uses MLX backend with native Metal acceleration (4-5x faster)
 - **Windows/Linux/Intel Mac**: Uses PyTorch backend (CUDA GPU if available, CPU fallback)

@@ -130,7 +130,7 @@ export function useExportProfile() {
 
       await platform.filesystem.saveFile(filename, blob, [
         {
-          name: 'Voicebox Profile',
+          name: 'DLM Voice Designer Profile',
           extensions: ['zip'],
         },
       ]);

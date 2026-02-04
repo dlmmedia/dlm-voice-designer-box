@@ -1,16 +1,16 @@
 # Troubleshooting Guide
 
-Common issues and solutions for Voicebox.
+Common issues and solutions for DLM Voice Designer.
 
 ## Installation Issues
 
-### macOS: "Voicebox cannot be opened because it is from an unidentified developer"
+### macOS: "DLM Voice Designer cannot be opened because it is from an unidentified developer"
 
 **Solution:**
 1. Right-click the `.dmg` file
 2. Select "Open"
 3. Click "Open" in the security dialog
-4. Alternatively, go to System Settings → Privacy & Security → Allow Voicebox
+4. Alternatively, go to System Settings → Privacy & Security → Allow DLM Voice Designer
 
 ### Windows: "Windows protected your PC"
 
@@ -216,9 +216,9 @@ chmod +x voicebox-*.AppImage
 
 **Solutions:**
 1. **Check data directory**
-   - macOS: `~/Library/Application Support/voicebox/`
-   - Windows: `%APPDATA%/voicebox/`
-   - Linux: `~/.local/share/voicebox/`
+   - macOS: `~/Library/Application Support/dlm-voice-designer/`
+   - Windows: `%APPDATA%/dlm-voice-designer/`
+   - Linux: `~/.local/share/dlm-voice-designer/`
 
 2. **Check database**
    - Database: `data/voicebox.db`
@@ -232,10 +232,10 @@ chmod +x voicebox-*.AppImage
 
 **Solutions:**
 1. **Close other instances**
-   - Ensure only one Voicebox instance is running
+   - Ensure only one DLM Voice Designer instance is running
 
 2. **Restart app**
-   - Close and reopen Voicebox
+   - Close and reopen DLM Voice Designer
 
 3. **Check file permissions**
    - Ensure database file is writable
@@ -293,7 +293,7 @@ chmod +x voicebox-*.AppImage
 2. **Create new issue**
    - Include:
      - OS and version
-     - Voicebox version
+     - DLM Voice Designer version
      - Steps to reproduce
      - Error messages/logs
      - Screenshots (if applicable)
@@ -305,4 +305,4 @@ chmod +x voicebox-*.AppImage
 
 ---
 
-For more help, open an issue on [GitHub](https://github.com/jamiepine/voicebox/issues).
+For more help, visit [DLMworld.com](https://DLMworld.com).

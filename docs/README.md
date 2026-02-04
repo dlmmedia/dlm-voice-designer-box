@@ -1,6 +1,6 @@
-# Voicebox Documentation
+# DLM Voice Designer Documentation
 
-This directory contains the documentation for Voicebox, built with [Mintlify](https://mintlify.com).
+This directory contains the documentation for DLM Voice Designer, built with [Mintlify](https://mintlify.com).
 
 ## Development
 

@@ -1,7 +1,7 @@
 [package]
-name = "voicebox"
+name = "dlm-voice-designer"
 version = "0.1.12"
-description = "A production-quality desktop app for Qwen3-TTS voice cloning and generation"
+description = "DLM Voice Designer - A production-quality desktop app for Qwen3-TTS voice cloning and generation"
 authors = ["you"]
 license = ""
 repository = ""

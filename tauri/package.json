@@ -1,5 +1,5 @@
 {
-  "name": "@voicebox/tauri",
+  "name": "@dlm-voice-designer/tauri",
   "private": true,
   "version": "0.1.12",
   "type": "module",

@@ -18,14 +18,14 @@ jobs:
             args: "--target aarch64-apple-darwin"
             python-version: "3.12"
             backend: "mlx"
-          - platform: "macos-15-intel"
+          - platform: "macos-13"
             args: "--target x86_64-apple-darwin"
             python-version: "3.12"
             backend: "pytorch"
-          # - platform: 'ubuntu-22.04'
-          #   args: ''
-          #   python-version: '3.12'
-          #   backend: 'pytorch'
+          - platform: "ubuntu-22.04"
+            args: ""
+            python-version: "3.12"
+            backend: "pytorch"
           - platform: "windows-latest"
             args: ""
             python-version: "3.12"
@@ -40,10 +40,10 @@ jobs:
         if: matrix.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf llvm-dev
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf llvm-dev libasound2-dev
 
       - name: Install LLVM (macOS)
-        if: matrix.platform == 'macos-latest' || matrix.platform == 'macos-15-intel'
+        if: matrix.platform == 'macos-latest' || matrix.platform == 'macos-13'
         run: |
           brew install llvm@20
           echo "$(brew --prefix llvm@20)/bin" >> $GITHUB_PATH
@@ -65,12 +65,6 @@ jobs:
         if: matrix.backend == 'mlx'
         run: |
           pip install -r backend/requirements-mlx.txt
-
-      # - name: Install PyTorch with CUDA (Windows only)
-      #   if: matrix.platform == 'windows-latest'
-      #   run: |
-      #     pip install torch --index-url https://download.pytorch.org/whl/cu121 --force-reinstall --no-deps
-      #     pip install torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
       - name: Build Python server (Linux/macOS)
         if: matrix.platform != 'windows-latest'
@@ -101,7 +95,7 @@ jobs:
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: ${{ (matrix.platform == 'macos-latest' && 'aarch64-apple-darwin') || (matrix.platform == 'macos-15-intel' && 'x86_64-apple-darwin') || '' }}
+          targets: ${{ (matrix.platform == 'macos-latest' && 'aarch64-apple-darwin') || (matrix.platform == 'macos-13' && 'x86_64-apple-darwin') || '' }}
 
       - name: Rust cache
         uses: swatinem/rust-cache@v2
@@ -111,38 +105,15 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      - name: Install Apple API key
-        if: matrix.platform == 'macos-latest' || matrix.platform == 'macos-15-intel'
-        run: |
-          mkdir -p ~/.appstoreconnect/private_keys/
-          cd ~/.appstoreconnect/private_keys/
-          echo ${{ secrets.APPLE_API_KEY_BASE64 }} >> AuthKey_${{ secrets.APPLE_API_KEY }}.p8.base64
-          base64 --decode -i AuthKey_${{ secrets.APPLE_API_KEY }}.p8.base64 -o AuthKey_${{ secrets.APPLE_API_KEY }}.p8
-          rm AuthKey_${{ secrets.APPLE_API_KEY }}.p8.base64
-
-      - name: Install Codesigning Certificate
-        if: matrix.platform == 'macos-latest' || matrix.platform == 'macos-15-intel'
-        uses: apple-actions/import-codesign-certs@v3
-        with:
-          p12-file-base64: ${{ secrets.APPLE_CERTIFICATE }}
-          p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
-          ENABLE_CODE_SIGNING: ${{ secrets.APPLE_CERTIFICATE }}
-          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
-          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
-          APPLE_PROVIDER_SHORT_NAME: ${{ secrets.APPLE_PROVIDER_SHORT_NAME }}
-          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
-          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
         with:
           projectPath: tauri
           tagName: v__VERSION__
-          releaseName: "voicebox v__VERSION__"
+          releaseName: "DLM Voice Designer Box v__VERSION__"
           releaseBody: |
             ## What's Changed
             See the assets below to download and install this version.
@@ -152,6 +123,8 @@ jobs:
             - **macOS (Intel)**: Download the `x64.dmg` file - uses PyTorch
             - **Windows**: Download the `.msi` installer
             - **Linux**: Download the `.AppImage` or `.deb` package
+
+            > **Note for macOS users**: This is an unsigned build. To open, right-click the app and select "Open", then click "Open" in the dialog.
 
             The app includes automatic updates - future updates will be installed automatically.
           releaseDraft: true

@@ -1,6 +1,6 @@
 import { RouterProvider } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
-import voiceboxLogo from '@/assets/voicebox-logo.png';
+import dlmLogo from '@/assets/dlm-voice-designer-logo.png';
 import ShinyText from '@/components/ShinyText';
 import { TitleBarDragRegion } from '@/components/TitleBarDragRegion';
 import { useAutoUpdater } from '@/hooks/useAutoUpdater';
@@ -152,8 +152,8 @@ function App() {
               <div className="w-48 h-48 rounded-full bg-accent/20 blur-3xl" />
             </div>
             <img
-              src={voiceboxLogo}
-              alt="Voicebox"
+              src={dlmLogo}
+              alt="DLM Voice Designer"
               className="w-48 h-48 object-contain animate-fade-in-scale relative z-10"
             />
           </div>

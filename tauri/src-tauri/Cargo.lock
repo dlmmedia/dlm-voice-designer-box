@@ -715,6 +715,34 @@ dependencies = [
 ]
 
 [[package]]
+name = "dlm-voice-designer"
+version = "0.1.12"
+dependencies = [
+ "base64 0.22.1",
+ "core-foundation-sys",
+ "coreaudio-sys",
+ "cpal",
+ "hound",
+ "objc",
+ "reqwest",
+ "scopeguard",
+ "screencapturekit",
+ "serde",
+ "serde_json",
+ "symphonia",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-dialog",
+ "tauri-plugin-fs",
+ "tauri-plugin-process",
+ "tauri-plugin-shell",
+ "tauri-plugin-updater",
+ "tokio",
+ "wasapi",
+ "windows 0.62.2",
+]
+
+[[package]]
 name = "dlopen2"
 version = "0.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5038,34 +5066,6 @@ name = "version_check"
 version = "0.9.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0b928f33d975fc6ad9f86c8f283853ad26bdd5b10b7f1542aa2fa15e2289105a"
-
-[[package]]
-name = "voicebox"
-version = "0.1.11"
-dependencies = [
- "base64 0.22.1",
- "core-foundation-sys",
- "coreaudio-sys",
- "cpal",
- "hound",
- "objc",
- "reqwest",
- "scopeguard",
- "screencapturekit",
- "serde",
- "serde_json",
- "symphonia",
- "tauri",
- "tauri-build",
- "tauri-plugin-dialog",
- "tauri-plugin-fs",
- "tauri-plugin-process",
- "tauri-plugin-shell",
- "tauri-plugin-updater",
- "tokio",
- "wasapi",
- "windows 0.62.2",
-]
 
 [[package]]
 name = "vswhom"

@@ -1,5 +1,5 @@
 {
-  "name": "voicebox",
+  "name": "dlm-voice-designer",
   "version": "0.1.12",
   "private": true,
   "workspaces": [
