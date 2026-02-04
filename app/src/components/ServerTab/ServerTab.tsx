@@ -12,17 +12,6 @@ export function ServerTab() {
         <ServerStatus />
       </div>
       {platform.metadata.isTauri && <UpdateStatus />}
-      <div className="py-8 text-center text-sm text-muted-foreground">
-        Created by{' '}
-        <a
-          href="https://github.com/jamiepine"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-accent hover:underline"
-        >
-          Jamie Pine
-        </a>
-      </div>
     </div>
   );
 }
